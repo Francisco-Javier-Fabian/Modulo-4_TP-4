@@ -1,14 +1,13 @@
-import { createContext, useContext } from "react";
+import { ApiContext } from "../hooks/useCreateContexts";
 import useApi from "../hooks/useApi";
 
-const ApiContext = createContext();
 
 export const ApiProvider = ({ children }) => {
   const api = useApi();
   return <ApiContext.Provider value={api}>{children}</ApiContext.Provider>;
 };
 
-export const useApiContext = () => useContext(ApiContext);
+
 
 
 

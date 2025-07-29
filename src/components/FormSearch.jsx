@@ -1,38 +1,45 @@
 import { useState } from "react";
-import { useApiContext } from "../contexts/ApiContext";
+import { useApiContext } from "../hooks/useConsumeContexts";
 
-export default function SearchForm() {
-  const { searchCharacters } = useApiContext();
+const FormSearch = () => {
+
+  const { getAllCharacters, getCharactersByParams } = useApiContext();
   const [query, setQuery] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    searchCharacters(query[0], query[1]); // Llama al hook con el nombre ingresado
+    console.log("Buscando personajes...");
+    !query
+      ? getAllCharacters()
+      : getCharactersByParams(
+        query[0] && query[0].trim(), 
+        query[1] && query[1].trim(), 
+        query[2] && query[2].trim(), 
+        query[3] && query[3].trim(), 
+        query[4] && query[4].trim()); // Llama al hook con los parametros ingresados
   };
 
   const handleChange = (e) => {
     e.preventDefault();
-    const params= e.target.value.split(",")
-    setQuery(params)
-    console.log(params);
-    
+    const params = e.target.value.split(',');
+    setQuery(params);
   }
   return (
-    <form onSubmit={handleSubmit} className="flex justify-center mb-6">
+    <form onSubmit={handleSubmit} className="flex h-fit w-fit mx-auto my-6 rounded-lg border border-slate-800">
       <input
         type="text"
         value={query}
         onChange={handleChange}
         placeholder="Buscar personaje..."
-        className="p-2 bg-slate-500 font-mono text-slate-200 text-xl mt-4 px-4 rounded-lg border border-slate-200"
+        className="p-2 bg-slate-500 font-mono text-slate-200 text-xl"
       />
-      <button type="submit" className="bg-teal-950 font-mono text-slate-200 text-xl mt-4 px-4 rounded-lg border border-slate-200">
+      <button type="submit" className="bg-teal-950 font-mono text-slate-200 text-xl p-2">
         Buscar
       </button>
     </form>
   );
 }
-
+export default FormSearch
 
 // import { useState } from "react"
 // import { useApiContext } from "../hooks/useConsumeContexts";

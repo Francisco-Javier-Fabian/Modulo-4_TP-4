@@ -17,8 +17,9 @@ const CharacterCard = ({char}) => {
 
       {/*  Nombre de la película  */}
       <h2 className="text-lg lg:text-xl font-bold text-white my-3 lg:my-4">{char.name}</h2>
-      <p className="text-sm">{char.status} - {char.species}</p>
-      <p className="text-xs text-gray-400 mt-1">{char.location.name}</p>
+      <p className="text-sm text-slate-100">{char.status} - {char.species}</p>
+      <p className="text-xs text-gray-300 mt-1">{char.location.name}</p>
+      
 
     </div>
   );

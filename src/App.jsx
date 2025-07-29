@@ -1,21 +1,25 @@
-import { ApiProvider } from "./contexts/ApiContext";
-import SearchForm from "./components/FormSearch";
 import CharacterGrid from "./components/CharacterGrid";
 import Header from "./components/Header";
 import Footer from "./components/Footer"
+import FormSearch from "./components/FormSearch";
+import { useState } from "react";
+import CartSidebar from "./components/CartSidebar";
 
 export default function App() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   return (
-    <ApiProvider>
-      <Header />
-      <div className="
+    <div className="
               min-h-screen
               bg-[#f2e7b3] dark:bg-slate-700">
-        <SearchForm />
-        <CharacterGrid />
-      </div>
+      <Header setIsSidebarOpen={setIsSidebarOpen} />
+      <CartSidebar
+        isSidebarOpen={isSidebarOpen}
+        setIsSidebarOpen={setIsSidebarOpen}
+      />
+      <FormSearch />
+      <CharacterGrid />
       <Footer />
-    </ApiProvider>
+    </div>
   );
 }
 
