@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import { useApiContext } from "../hooks/useConsumeContexts";
 import CharacterCard from "./CharacterCard";
 
@@ -10,8 +11,15 @@ const CharacterGrid = () => {
   console.log(`personajes APP: ${i}`, characters);
   i++;
 
-  if (loading) return <p className="text-center">Cargando...</p>;
-  if (error) return <p className="text-center text-red-400">{error}</p>;
+  if (loading) return toast('Cargando... ')
+
+  {/* <FadeLoader
+    color="white"
+    loading={loading}
+    size={150}
+    aria-label="Loading Spinner"
+    data-testid="loader"/> Cargando...</p>; */}
+  if (error) return toast('Error al cargar!...');
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6 p-6">

@@ -6,7 +6,7 @@ import { useCartContext } from "../hooks/useConsumeContexts";
 
 const CartSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
 
-  const { cart, totalPrice, removeAll } = useCartContext();
+  const { cart, removeAll } = useCartContext();
 
   // Setea el estado isModalOpen a false para poder cerrar el modal
   const handleCloseSidebar = () => setIsSidebarOpen(false)
@@ -38,10 +38,10 @@ const CartSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
             { /*  Si la lista no está vacía se renderizan las pelis sino se muestra un msj  */
               cart.length > 0 ? (
                 <ul className="mx-6 my-4">
-                  {cart.map((product) => (
+                  {cart.map((char) => (
                     <ProductCardSidebar
-                      key={product.id}
-                      product={product}
+                      key={char.id}
+                      char={char}
                     />
                   ))}
                 </ul>
@@ -49,14 +49,7 @@ const CartSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                 <EmptyCart />
               )
             }
-            <div className="flex sticky bottom-0 justify-between text-slate-200 font-semibold py-2 px-5 shadow-inner shadow-[#664bce] bg-[#8f542b] dark:bg-fuchsia-950 mt-4">
-              <p>Precio Total: </p>
-              <p> $ {totalPrice}</p>
-              {console.log(totalPrice)}
-
-            </div>
-
-
+      
 
           </div>
         </div>

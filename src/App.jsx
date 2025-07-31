@@ -4,13 +4,26 @@ import Footer from "./components/Footer"
 import FormSearch from "./components/FormSearch";
 import { useState } from "react";
 import CartSidebar from "./components/CartSidebar";
+import { ToastContainer, Slide } from 'react-toastify';
 
 export default function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   return (
     <div className="
-              min-h-screen
-              bg-[#f2e7b3] dark:bg-slate-700">
+    min-h-screen
+    bg-[#f2e7b3] dark:bg-slate-700">
+      <ToastContainer stacked
+        position="bottom-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition={Slide} />
       <Header setIsSidebarOpen={setIsSidebarOpen} />
       <CartSidebar
         isSidebarOpen={isSidebarOpen}

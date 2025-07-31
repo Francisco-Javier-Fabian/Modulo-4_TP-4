@@ -41,34 +41,25 @@ export default function useCartList() {
   const removeFromCart = (productId) => {
     setCart((prevCart) => prevCart.filter((product) => product.id !== productId));
   };
-
-  const updateQuantity = (id, quantity) => {
-    setCart((prevCart) =>
-      prevCart.map((product) =>
-        product.id === id ? { ...product, quantity: Math.max(1, quantity) } : product
-      )
-    );
-  };
+  
 
   const removeAll = () => setCart([])
-
-
-  const totalPrice = cart.reduce((total, product) => total + product.price * product.quantity, 0);
 
   /* // Remover todo lo de cart
     const handleRemoveProductAll = () => {
       setCartList([])
     } */
-
+  // Verifica si la película se encuentra en la lista
+  const isInFavs = (movieId) =>
+    cart.some((movie) => movie.id === movieId);
   /* ────────────────────────────────────────────────────────────────────────────── */
 
   return {
     cart,
     addToCart,
     removeFromCart,
-    updateQuantity,
-    totalPrice,
-    removeAll
+    removeAll,
+    isInFavs
   };
 }
 

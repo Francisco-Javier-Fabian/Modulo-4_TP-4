@@ -11,29 +11,22 @@ const FormSearch = () => {
     console.log("Buscando personajes...");
     !query
       ? getAllCharacters()
-      : getCharactersByParams(
-        query[0] && query[0].trim(), 
-        query[1] && query[1].trim(), 
-        query[2] && query[2].trim(), 
-        query[3] && query[3].trim(), 
-        query[4] && query[4].trim()); // Llama al hook con los parametros ingresados
+      : getCharactersByParams(query); // Llama al hook con el name ingresado
   };
 
   const handleChange = (e) => {
-    e.preventDefault();
-    const params = e.target.value.split(',');
-    setQuery(params);
+    setQuery(e.target.value);
   }
   return (
-    <form onSubmit={handleSubmit} className="flex h-fit w-fit mx-auto my-6 rounded-lg border border-slate-800">
+    <form onSubmit={handleSubmit} className="flex h-fit w-fit mx-auto my-6 rounded-lg ">
       <input
         type="text"
         value={query}
         onChange={handleChange}
         placeholder="Buscar personaje..."
-        className="p-2 bg-slate-500 font-mono text-slate-200 text-xl"
+        className="p-2 bg-[#8f542b] dark:bg-slate-500  rounded-l-lg font-mono text-slate-100 text-xl"
       />
-      <button type="submit" className="bg-teal-950 font-mono text-slate-200 text-xl p-2">
+      <button type="submit" className="bg-teal-950 font-mono text-slate-200 text-xl p-2 rounded-r-lg">
         Buscar
       </button>
     </form>

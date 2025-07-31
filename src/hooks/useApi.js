@@ -31,16 +31,16 @@ export default function useApi() {
   }, []); // ← no depende de nada externo
 
   /*   Fn para Obtener Personajes por Parámetros   */
-  const getCharactersByParams = useCallback(async (name, page, status, species, gender) => {
+  const getCharactersByParams = useCallback(async (name) => {
 
     setLoading(true);
     setError(null);
 
     try {
-      const { info, results: firstPageResults } = await fetchCharactersByParams(name, page, status, species, gender);
+      const { info, results: firstPageResults } = await fetchCharactersByParams(name);
 
       const otherPages = await Promise.all(
-        Array.from({ length: info.pages - 1 }, (_, i) => fetchCharactersByParams(name, i + 2, status, species, gender))
+        Array.from({ length: info.pages - 1 }, (_, i) => fetchCharactersByParams(name, i + 2))
       );
       const restResults = otherPages.flatMap(page => page.results);
 

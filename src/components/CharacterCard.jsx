@@ -1,5 +1,8 @@
+import AddRemoveBtn from "./AddRemoveBtn";
 
-const CharacterCard = ({char}) => {
+
+const CharacterCard = ({ char }) => {
+
 
   return (
     <div className='bg-[#8f542b] dark:bg-slate-900 w-full p-4 xl:p-5 rounded-xl shadow-md text-center flex flex-col justify-between'>
@@ -17,9 +20,17 @@ const CharacterCard = ({char}) => {
 
       {/*  Nombre de la película  */}
       <h2 className="text-lg lg:text-xl font-bold text-white my-3 lg:my-4">{char.name}</h2>
-      <p className="text-sm text-slate-100">{char.status} - {char.species}</p>
-      <p className="text-xs text-gray-300 mt-1">{char.location.name}</p>
       
+      
+      <div>
+        <p className="text-sm text-slate-100">{char.status} - {char.species}</p>
+
+        <p className="text-xs text-gray-300 mt-1">{char.location.name}</p>
+      </div>
+      
+      < AddRemoveBtn
+        charId={char.id}
+        char={char} />
 
     </div>
   );
